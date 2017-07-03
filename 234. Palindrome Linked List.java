@@ -8,28 +8,30 @@
  */
 public class Solution {
     public boolean isPalindrome(ListNode head) {
-        //find the middle point
+        if(head == null || head.next == null) return true;
+        //find the middle node
         ListNode slow = head;
         ListNode fast = head;
-        while(fast.next != null && fast.next.next != null){
+        while(fast != null && fast.next != null){
             fast = fast.next.next;
             slow = slow.next;
         }
-        //reverse second half linked list
-        ListNode pre = slow.next;
-        ListNode cur = pre.next;
-        while(cur != null){
-            pre.next = cur.next;
-            cur.next = slow.next;
-            slow.next = cur;
-            cur = pre.next;
+        //check ood 
+        if(fast != null && fast.next == null) slow = slow.next;
+        //reverse second half of linked list
+        fast = null;
+        while(slow != null){
+            ListNode next = slow.next;
+            slow.next = fast;
+            fast = slow;
+            slow = next;
         }
-        //check first half and second half
-        while(slow.next){
-            if(slow.next.val != head.val)
-                return false;
+        //compare
+        slow = head;
+        while(fast != null){
+            if(slow.val != fast.val) return false;
             slow = slow.next;
-            head = head.next;
+            fast = fast.next;
         }
         return true;
     }
