@@ -1,0 +1,28 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        if(word.length() <= 1) return true;
+        if(isCapital(word.charAt(0)))
+            return isAllCapitals(word.substring(1)) || isAllNotCapitals(word.substring(1));
+        else
+            return isAllNotCapitals(word.substring(1));
+    }
+    
+    private boolean isCapital(Character c){
+        if(c - 'A' >= 0 && 'Z' - c >= 0) return true;
+        return false;
+    }
+    
+    private boolean isAllCapitals(String s){
+        for(int i = 0; i < s.length(); i++)
+            if(s.charAt(i) - 'A' < 0 || 'Z' - s.charAt(i) < 0)
+                return false;
+        return true;
+    }
+    
+    private boolean isAllNotCapitals(String s){
+        for(int i = 0; i < s.length(); i++)
+            if(s.charAt(i) - 'a' < 0 || 'z' - s.charAt(i) < 0)
+                return false;
+        return true;
+    }
+}
