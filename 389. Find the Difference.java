@@ -15,3 +15,22 @@ public class Solution {
         return a[res - 'a'];
     }
 }
+
+// another solution
+class Solution {
+    public char findTheDifference(String s, String t) {
+        int[] alphabet = new int[26];
+        for(char c: s.toCharArray())
+            alphabet[c - 'a']--;
+        for(char c: t.toCharArray())
+            alphabet[c - 'a']++;
+        int tmp = 0;
+        for(int i = 0; i < 26; i++){
+            if(alphabet[i] == 1){
+                tmp = i;
+                break;
+            }
+        }
+        return (char)('a' + tmp);
+    }
+}
