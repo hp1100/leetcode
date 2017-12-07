@@ -16,3 +16,19 @@ public class Solution {
         }
     }
 }
+
+
+// 
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] ca = s.toCharArray();
+        for(int left = 0; left < s.length(); left += 2 * k){
+            for(int i = left, j = Math.min(left + k - 1, ca.length - 1); i < j; i++, j--){
+                char temp = ca[i];
+                ca[i] = ca[j];
+                ca[j] = temp;
+            }
+        }
+        return new String(ca);
+    }
+}
