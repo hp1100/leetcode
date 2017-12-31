@@ -1,0 +1,8 @@
+class Solution {
+    public int findLUSlength(String a, String b) {
+        // 1. two strings are not of same length, the length of longer one is the answer
+        // 2. two strings are same, return -1
+        // 3. two string with same length but not same, their length is the answer
+        return a.equals(b) ? -1 : Math.max(a.length(), b.length());
+    }
+}
