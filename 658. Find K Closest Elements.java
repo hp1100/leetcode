@@ -1,3 +1,4 @@
+// O(nlogk)
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
         int[][] diff = new int[arr.length][2];
@@ -19,5 +20,28 @@ class Solution {
             list.add(i);
         }
         return list;
+    }
+}
+
+//O(logn + 2k)
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        // find x first
+        int idx = Arrays.binarySearch(arr, x);
+        if(idx < 0)
+            idx = -(idx + 1);
+        // k ~ x ~ k
+        int lo = Math.max(0, idx - k);
+        int hi = Math.min(arr.length - 1, idx + k);
+        // 2k -> k
+        while(hi - lo > k - 1){
+            if(arr[hi] - x >= x - arr[lo]){
+                hi--;
+            }else{
+                lo++;
+            }
+        }
+        
+        return Arrays.stream(Arrays.copyOfRange(arr, lo, lo + k)).boxed().collect(Collectors.toList());
     }
 }
