@@ -21,7 +21,7 @@ class Solution {
                     res[cur++] = nums[hi++];
                 }else if(hi >= nums.length){
                     res[cur++] = nums[lo--];
-                }else if(vertex - (double)nums[lo] <= (double)nums[hi] - vertex){
+                }else if(vertex - nums[lo] <= nums[hi] - vertex){
                     res[cur++] = nums[lo--];
                 }else{
                     res[cur++] = nums[hi++];
