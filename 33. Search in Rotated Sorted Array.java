@@ -26,7 +26,7 @@ public class Solution {
 }
 // easy to understand way:
 // divide [4 5 6 7 0 1 2] into [4 5 6 7] and [0 1 2]
-// then binary search in earch subarray
+// then binary search in each subarray
 class Solution {
     public int search(int[] nums, int target) {
         if(nums == null || nums.length == 0) return -1;
