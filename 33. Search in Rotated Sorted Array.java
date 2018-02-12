@@ -24,3 +24,51 @@ public class Solution {
         return -1;
     }
 }
+// easy to understand way:
+// divide [4 5 6 7 0 1 2] into [4 5 6 7] and [0 1 2]
+// then binary search in earch subarray
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums == null || nums.length == 0) return -1;
+        
+        int pos = findMin(nums);
+        // find in left sorted subarray
+        int left = binarySearch(nums, 0, pos - 1, target);
+        // find in right sorted subarray
+        int right = binarySearch(nums, pos, nums.length - 1, target);
+        
+        return left != -1 ? left : (right != -1 ? right : -1);
+    }
+    
+    // binary search : if find, return index, else return -1
+    public int binarySearch(int[] nums, int lo, int hi, int target){
+        while(lo <= hi){
+            int mid = (hi - lo) / 2 + lo;
+            if(nums[mid] == target){
+                return mid;
+            }else if(nums[mid] < target){
+                lo = mid + 1;
+            }else{
+                hi = mid - 1;
+            }
+        }
+        return -1;
+    }
+    
+    // find the minimum element to divide array
+    private int findMin(int[] nums) {
+        if (nums == null || nums.length == 0)  return -1;
+
+        int lo = 0, hi = nums.length - 1, target = nums[hi];
+        
+        while(lo + 1 < hi){
+            int mid = (hi - lo) / 2 + lo;
+            if(nums[mid] <= target){
+                hi = mid;
+            }else{
+                lo = mid;
+            }
+        }
+        return nums[lo] <= nums[hi] ? lo : hi;
+    }
+}
