@@ -16,7 +16,8 @@ public int binarySearch(int[] nums, int target){
 	return -1;
 }
   
-// find first element
+// find first element （lower_bound)
+// Method 1: lo <= hi, hi = nums.length - 1
 private int binarySearch(int[] nums, int target){
 	int lo = 0, hi = nums.length - 1;
 	while(lo <= hi){
@@ -30,8 +31,9 @@ private int binarySearch(int[] nums, int target){
 	return lo;
 }
 
-private static int binarySearch(int[] nums, int target){
-	int lo = 0, hi = nums.length - 1;
+// Method 2: lo < hi, hi = nums.length
+private int binarySearch(int[] nums, int target){
+	int lo = 0, hi = nums.length;
 	while(lo < hi){
 		int mid = (hi - lo) / 2 + lo;
 		if(nums[mid] < target)
@@ -44,7 +46,7 @@ private static int binarySearch(int[] nums, int target){
 
 
   
-// find last element
+// find last element (upper_bound)
 private int binarySearch(int[] nums, int target){
 	int lo = 0, hi = nums.length - 1;
 	while(lo <= hi){
