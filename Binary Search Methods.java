@@ -58,3 +58,6 @@ private int binarySearch(int[] nums, int target){
 	}
 	return lo;
 }
+
+// double / float
+const double EPSLION = 1e-8;
