@@ -7,6 +7,10 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+// Time complexity: O((logn)^2)
+// Treavel tree logn times
+// every time check height cost logn time
 class Solution {
     public int height(TreeNode node){
         return node == null ? -1 : height(node.left) + 1;
