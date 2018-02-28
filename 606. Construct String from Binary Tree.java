@@ -15,6 +15,7 @@ class Solution {
         if(t == null) return "";
         
         res += t.val;
+        
         if(t.left != null || t.right != null) {
             res += "(";
             tree2str(t.left);
