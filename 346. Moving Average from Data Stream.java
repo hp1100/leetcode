@@ -1,8 +1,8 @@
 class MovingAverage {
     
-    public Queue<Integer> queue;
-    public int size;
-    public int sum;
+    private Queue<Integer> queue;
+    private int size;
+    private int sum;
 
     /** Initialize your data structure here. */
     public MovingAverage(int size) {
