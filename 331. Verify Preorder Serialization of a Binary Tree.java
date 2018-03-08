@@ -14,7 +14,7 @@ class Solution {
 }
 
 
-// use stack 
+// use stack ( O(n) space) 
 
 public class Solution {
     public boolean isValidSerialization(String preorder) {
