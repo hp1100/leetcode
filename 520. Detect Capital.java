@@ -37,3 +37,10 @@ class Solution {
         return count == 0 || count == word.length() || (count == 1 && 'Z' - word.charAt(0) >= 0); 
     }
 }
+
+// 1-line
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        return word.substring(1).equals(word.substring(1).toLowerCase())||word.equals(word.toUpperCase());
+    }
+}
