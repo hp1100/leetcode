@@ -32,16 +32,9 @@ class Solution {
         if(i + 1 < m && j + 1 < n && board[i+1][j+1] >> 1 == 1) count++; // 8
         //System.out.println(count);
         
-        if(board[i][j] >> 1 == 1) { // live cell
-            if(count == 2 || count == 3)
-                return 3;
-            else
-                return 2;
-        }else{ // dead cell
-            if(count == 3)
-                return 1;
-            else
-                return 0;
-        }
+        if(board[i][j] >> 1 == 1)  // live cell
+            return (count == 2 || count == 3) ? 3 : 2;
+        else // dead cell
+            return count == 3 ? 1 : 0;
     }
 }
