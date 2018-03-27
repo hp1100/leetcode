@@ -22,7 +22,7 @@ public class Solution {
                 for (int j = -1; j < 2; j++) {
                     if (i == 0 && j == 0) continue;
                     int r = row + i, c = col + j;
-                    if (r < 0 || r >= m || c < 0 || c < 0 || c >= n) continue;
+                    if (r < 0 || r >= m || c < 0 || c >= n) continue;
                     if (board[r][c] == 'M' || board[r][c] == 'X') count++;
                 }
             }
@@ -36,7 +36,7 @@ public class Solution {
                     for (int j = -1; j < 2; j++) {
                         if (i == 0 && j == 0) continue;
                         int r = row + i, c = col + j;
-                        if (r < 0 || r >= m || c < 0 || c < 0 || c >= n) continue;
+                        if (r < 0 || r >= m || c < 0 || c >= n) continue;
                         if (board[r][c] == 'E') updateBoard(board, new int[] {r, c});
                     }
                 }
@@ -68,7 +68,7 @@ public class Solution {
                     for (int j = -1; j < 2; j++) {
                         if (i == 0 && j == 0) continue;
                         int r = row + i, c = col + j;
-                        if (r < 0 || r >= m || c < 0 || c < 0 || c >= n) continue;
+                        if (r < 0 || r >= m || c < 0 || c >= n) continue;
                         if (board[r][c] == 'M' || board[r][c] == 'X') count++;
                     }
                 }
@@ -82,7 +82,7 @@ public class Solution {
                         for (int j = -1; j < 2; j++) {
                             if (i == 0 && j == 0) continue;
                             int r = row + i, c = col + j;
-                            if (r < 0 || r >= m || c < 0 || c < 0 || c >= n) continue;
+                            if (r < 0 || r >= m || c < 0 || c >= n) continue;
                             if (board[r][c] == 'E') {
                                 queue.add(new int[] {r, c});
                                 board[r][c] = 'B'; // Avoid to be added again.
