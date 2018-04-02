@@ -10,7 +10,9 @@ class Solution {
                 else if(j > 0 && S.charAt(j) == S.charAt(j - 1) && j < S.length() - 1 && S.charAt(j) == S.charAt(j + 1)) 
                     // last, this and next
                     j++;
-                else if(!(j > 1 && S.charAt(j) == S.charAt(j - 1) && S.charAt(j) == S.charAt(j - 2))) // this and last 2 
+                else if(!(j > 1 && S.charAt(j) == S.charAt(j - 1) && S.charAt(j) == S.charAt(j - 2))) 
+                    // this and last 2
+                    // to make sure we have reach the end of S
                     break;
             }
             if(i == word.length() && j == S.length()) // both pointers reach the end
