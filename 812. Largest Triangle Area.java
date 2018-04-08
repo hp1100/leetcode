@@ -3,16 +3,12 @@ class Solution {
         
         double max = 0;
         
-        for(int i = 0; i < points.length; i++) {
-            for(int j = i + 1; j < points.length; j++) {
-                for(int k = j + 1; k < points.length; k++) {
+        for(int i = 0; i < points.length; i++) 
+            for(int j = i + 1; j < points.length; j++) 
+                for(int k = j + 1; k < points.length; k++) 
                     max = Math.max(max, calculateArea(new int[][]{points[i], points[j], points[k]}));
-                }
-            }
-        }
         
         return max;
-        
     }
     
     private double calculateArea(int[][] points) {
