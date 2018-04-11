@@ -1,5 +1,5 @@
 // basic binary search
-// return index if exist else return -1
+// return index if exist else return insert place
 // no duplicate
 public int binarySearch(int[] nums, int target){
 	int lo = 0, hi = nums.length - 1;
@@ -13,7 +13,7 @@ public int binarySearch(int[] nums, int target){
 			hi = mid - 1;
 		}
 	}
-	return -1;
+	return lo;
 }
   
 // find first element （lower_bound)
@@ -44,6 +44,25 @@ private int binarySearch(int[] nums, int target){
 	return lo;
 }
 
+// LintCode 14: First Position of Target(return -1 if target does not exsits in array)
+public int binarySearch(int[] nums, int target) {
+	//write your code here
+	int lo = 0, hi = nums.length - 1;
+	while(lo + 1 < hi){
+	    int mid = (hi - lo) / 2 + lo;
+	    if(target < nums[mid]){
+		hi = mid;
+	    }else if(target == nums[mid]){
+		hi = mid;
+	    }else{
+		lo = mid;
+	    }
+	}
+	if(nums[lo] == target) return lo;
+	if(nums[hi] == target) return hi;
+	return -1;
+}
+
 
   
 // find last element (upper_bound)
@@ -58,6 +77,9 @@ private int binarySearch(int[] nums, int target){
 	}
 	return lo;
 }
+
+
+
 
 // double / float
 const double EPSLION = 1e-8;
