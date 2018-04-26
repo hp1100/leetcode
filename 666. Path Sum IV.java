@@ -1,3 +1,4 @@
+// My solution： 
 class Solution {
     
     public int sum = 0;
@@ -32,5 +33,39 @@ class Solution {
             }
         }
         if(end) sum += curSum;
+    }
+}
+
+
+//         0
+//     0       1
+//  0   1     2   3
+//0 1  2 3   4 5  6 7
+//Regardless whether these nodes exist:
+
+//the position of left child is always parent_pos * 2;
+//the position of right child is alwaysparent_pos * 2 + 1;
+//the position of parent is always child_pos / 2;
+
+class Solution {
+
+    public int pathSum(int[] nums) {
+        int sum = 0;
+        int[][] m = new int[5][8];
+        for(int num: nums){
+            int i = num / 100;
+            int j = num % 100 / 10 - 1;
+            int v = num % 10;
+            m[i][j] = m[i - 1][j / 2] + v;
+        }
+        
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(i == 4 || m[i][j] != 0 && m[i + 1][j * 2] == 0 && m[i + 1][j * 2 + 1] == 0)
+                    sum += m[i][j];
+            }
+        }
+        
+        return sum;
     }
 }
