@@ -23,7 +23,7 @@ class Solution {
     }
 }
 
-// Greedy 
+// Greedy O(n)
 class Solution {
     public int jump(int[] nums) {
         int curFarthest = 0, jump = 0, curEnd = 0;
