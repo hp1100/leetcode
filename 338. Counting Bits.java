@@ -14,3 +14,15 @@ public class Solution {
         return res;
     }
 }
+
+// dp O(n)
+class Solution {
+    public int[] countBits(int num) {
+        int[] memo = new int[num + 1];
+        memo[0] = 0;
+        for (int i = 1; i <= num; i++) {
+            memo[i] = (i % 2) + memo[i / 2];
+        }
+        return memo;
+    }
+}
