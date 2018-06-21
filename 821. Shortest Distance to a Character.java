@@ -17,3 +17,20 @@ public int[] shortestToChar(String S, char C) {
     }
     return res;
 }
+
+// 2018/06/21
+class Solution {
+    public int[] shortestToChar(String S, char C) {
+        int[] res = new int[S.length()];
+        int left = -1, right = -1;
+        Arrays.fill(res, Integer.MAX_VALUE);
+        for (int i = 0, j = S.length() - 1; i < S.length() && j >= 0; i++, j--) {
+            if (S.charAt(i) == C) left = i;
+            if (S.charAt(j) == C) right = j;
+            if (left != -1) res[i] = Math.min(res[i], i - left);
+            if (right != -1) res[j] = Math.min(res[j], Math.abs(right - j));
+            
+        }
+        return res;
+    }
+}
