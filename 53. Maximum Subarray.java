@@ -1,3 +1,4 @@
+// 2017.6.28 Space: O(n)
 public class Solution {
     public int maxSubArray(int[] nums) {
         //if(nums == null || nums.length == 0) return 0;
@@ -11,5 +12,25 @@ public class Solution {
             if(presum[i] < min) min = presum[i];
         }
         return max;
+    }
+}
+
+// 2018.6.26 Space: O(1)
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int preMinSum = 0;
+        int largestSum = Integer.MIN_VALUE;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (sum - preMinSum > largestSum) {
+                largestSum = sum - preMinSum;
+            }
+            
+            if (sum < 0) {
+                preMinSum = Math.min(preMinSum, sum);
+            }
+        }
+        return largestSum;
     }
 }
