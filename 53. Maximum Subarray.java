@@ -35,7 +35,7 @@ class Solution {
     }
 }
 
-// 2018.7.2 Space:O(1) do not need to record min value
+// 2018.7.3 Space:O(1) do not need to record min value
 class Solution {
     public int maxSubArray(int[] A) {
         int maxEndingHere = A[0], maxSoFar = A[0];
