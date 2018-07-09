@@ -1,14 +1,10 @@
 class Solution {
     public String rearrangeString(String S, int k) {
-        if (k <= 1) return S;
-        if (S.length() == 1) return S;
         int n = S.length();
         Map<Character, Integer> map = new HashMap<>();
-        for (char c : S.toCharArray())
-            map.put(c, map.getOrDefault(c, 0) + 1);
+        for (char c : S.toCharArray())  map.put(c, map.getOrDefault(c, 0) + 1);
         PriorityQueue<Map.Entry<Character, Integer>> pq = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
-        for (Map.Entry<Character, Integer> entry: map.entrySet())
-            pq.offer(entry);
+        for (Map.Entry<Character, Integer> entry: map.entrySet())   pq.offer(entry);
         
         char[] res = new char[n];
         int idx = 0;
