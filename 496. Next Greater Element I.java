@@ -1,6 +1,6 @@
 public class Solution {
     public int[] nextGreaterElement(int[] findNums, int[] nums) {
-                Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         Stack<Integer> stack = new Stack<>();
         for(int num: nums){
             while(!stack.isEmpty() && stack.peek() < num){
