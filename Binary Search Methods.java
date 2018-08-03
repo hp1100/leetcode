@@ -31,7 +31,7 @@ private int binarySearch(int[] nums, int target){
 	return lo;
 }
 
-// Method 2: lo < hi, hi = nums.length
+// Method 2.1: lo < hi, hi = nums.length
 private int binarySearch(int[] nums, int target){
 	int lo = 0, hi = nums.length;
 	while(lo < hi){
@@ -42,6 +42,19 @@ private int binarySearch(int[] nums, int target){
 			hi = mid;
 	}
 	return lo;
+}
+
+// Method 2.2: lo < hi, hi = nums.length
+private int binarySearch(int[] nums, int target){
+	int lo = 0, hi = nums.length;
+	while(lo < hi){
+		int mid = (hi - lo) / 2 + lo + 1;
+		if(nums[mid] > target)
+			hi = mid - 1;
+		else
+			lo = mid;
+	}
+	return hi;
 }
 
 // LintCode 14: First Position of Target(return -1 if target does not exsits in array)
