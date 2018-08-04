@@ -1,3 +1,4 @@
+// O(1) space
 public class Solution {
     public int trap(int[] height) {
         int res = 0;
@@ -16,6 +17,7 @@ public class Solution {
 }
 
 // 2018/8/4 two for loop (head -> tail) + (tail -> head)
+// O(n) space
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
