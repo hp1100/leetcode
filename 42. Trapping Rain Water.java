@@ -14,3 +14,29 @@ public class Solution {
         return res;
     }
 }
+
+// 2018/8/4 two for loop (head -> tail) + (tail -> head)
+class Solution {
+    public int trap(int[] height) {
+        int n = height.length;
+        int[] waters = new int[n];
+        for (int i = 0, heightest = 0; i < n; i++) {
+            if (height[i] <= heightest) {
+                waters[i] = heightest - height[i];
+            } else {
+                heightest = height[i];
+            }
+        }
+        int sum = 0;
+        for (int i = n - 1, heightest = 0; i >= 0; i--) {
+            if (height[i] <= heightest) {
+                waters[i] = Math.min(waters[i], heightest - height[i]);
+            } else {
+                heightest = height[i];
+                waters[i] = 0;
+            }
+            sum += waters[i];
+        }
+        return sum;
+    }
+}
