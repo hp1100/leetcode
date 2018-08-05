@@ -1,3 +1,4 @@
+// O (log(Math.min(A, B))
 class Solution {
     public double findMedianSortedArrays(int[] A, int[] B) {
         int m = A.length;
@@ -31,5 +32,43 @@ class Solution {
             }
         }
         return 0.0;
+    }
+}
+
+// O(log(m + n))
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int l = (m + n + 1) / 2;
+        int r = (m + n + 2) / 2;
+        
+        return (findKth(nums1, 0, nums2, 0, l) + findKth(nums1, 0, nums2, 0, r)) / 2;
+    }
+    
+    public double findKth(int[] A, int Astart, int[] B, int Bstart, int k) {
+        if (Astart >= A.length) {
+            return B[Bstart + k - 1];
+        }
+        if (Bstart >= B.length) {
+            return A[Astart + k - 1];
+        }
+        if (k == 1) {
+            return Math.min(A[Astart], B[Bstart]);
+        }
+        int Amid = Integer.MAX_VALUE, Bmid = Integer.MAX_VALUE;
+        if (Astart + k/2 -1 < A.length) {
+            Amid = A[Astart + k/2 - 1];
+        }
+        if (Bstart + k/2 -1 < B.length) {
+            Bmid = B[Bstart + k/2 - 1];
+        }
+        if (Amid < Bmid) {
+            return findKth(A, Astart + k/2, B, Bstart, k - k/2);
+        } else {
+            return findKth(A, Astart, B, Bstart + k/2, k - k/2);
+        }
+        
+        
     }
 }
