@@ -1,6 +1,6 @@
 class Solution {
-    public String pushDominoes(String dominoes) {
-        d = 'L' + dominoes + 'R';
+    public String pushDominoes(String d) {
+        d = 'L' + d + 'R';
         StringBuilder res = new StringBuilder();
         for (int i = 0, j = 1; j < d.length(); ++j) {
             if (d.charAt(j) == '.') continue;
