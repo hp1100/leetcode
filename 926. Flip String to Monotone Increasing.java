@@ -3,7 +3,7 @@ class Solution {
         int count = 0, flip = 0;
         for (char c : S.toCharArray())
             if (c == '1') count++;
-        int res = S.length() - count;
+        int res = S.length() - count; // all '1', eg: "11111"
         for (int i = 0; i < S.length(); i++) {
             if (S.charAt(i) == '1') {
                 flip++;
