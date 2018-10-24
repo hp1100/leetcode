@@ -5,13 +5,11 @@ class Solution {
             if (c == '1') count++;
         int res = S.length() - count;
         for (int i = 0; i < S.length(); i++) {
-            if (S.charAt(i) == '0') {
-                res = Math.min(res, flip + S.length() - i - 1 - count);
-            } else {
+            if (S.charAt(i) == '1') {
                 flip++;
-                count--;
-                res = Math.min(res, flip + S.length() - i - 1 - count);
+                count--;  
             }
+            res = Math.min(res, flip + S.length() - i - 1 - count);
         }
         return res;
     }
