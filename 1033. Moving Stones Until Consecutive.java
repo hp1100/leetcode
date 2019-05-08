@@ -1,9 +1,6 @@
 class Solution {
     public int[] numMovesStones(int a, int b, int c) {
-        int[] nums = new int[3];
-        nums[0] = a;
-        nums[1] = b;
-        nums[2] = c;
+        int[] nums = {a, b, c};
         Arrays.sort(nums);
         a = nums[0];
         b = nums[1];
