@@ -1,6 +1,10 @@
 // pass all testcases, but still not correct!!!!
 // because preMin can only store second smallest num, but the answer might be stored in third smallest num(PrePreMin)
 
+//Wrong test case
+//["AllOne","inc","inc","inc","inc","inc","inc","inc","inc","inc","inc","dec","dec","dec","getMinKey"]
+//[[],["a"],["b"],["b"],["c"],["c"],["c"],["d"],["d"],["d"],["d"],["a"],["b"],["b"],[]]
+
 class AllOne {
     
     Map<String, Integer> counts;
