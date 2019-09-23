@@ -1,3 +1,6 @@
+// pass all testcase, but not correct!!!!
+// because preMin can only store second smallest num, but the answer might be stored in third smallest num(PrePreMin)
+
 class AllOne {
     
     Map<String, Integer> counts;
