@@ -18,8 +18,7 @@ class AllOne {
     public void inc(String key) {
         if (!counts.containsKey(key)) {
             counts.put(key, 1);
-            if (!lists.containsKey(1))
-                lists.put(1, new HashSet<>());
+            lists.computeIfAbsent(1, v -> new HashSet<>());
             lists.get(1).add(key);
             preMin = min;
             min = Math.min(1, min);
@@ -30,14 +29,11 @@ class AllOne {
             lists.get(count).remove(key);
             if (lists.get(count).size() == 0)
                 lists.remove(count);
-            if (!lists.containsKey(count + 1))
-                lists.put(count + 1, new HashSet<>());
+            lists.computeIfAbsent(count + 1, v -> new HashSet<>());
             lists.get(count + 1).add(key);
             if (!lists.containsKey(min)) {
-                            preMin = min;
-
-                                min = count + 1;
-
+                preMin = min;
+                min = count + 1;
             }
             max = Math.max(count + 1, max);
         }
@@ -54,8 +50,7 @@ class AllOne {
         } else {
             counts.put(key, count - 1);
             lists.get(count).remove(key);
-            if (!lists.containsKey(count - 1))
-                lists.put(count - 1, new HashSet<>());
+            lists.computeIfAbsent(count - 1, v -> new HashSet<>());
             lists.get(count - 1).add(key);
             if (!lists.containsKey(max))
                 max = count - 1;
@@ -69,13 +64,20 @@ class AllOne {
     
     /** Returns one of the keys with maximal value. */
     public String getMaxKey() {
-        System.out.println("max:"+max);
         return lists.containsKey(max) ? lists.get(max).iterator().next() : "";
     }
     
     /** Returns one of the keys with Minimal value. */
     public String getMinKey() {
-        System.out.println("min:"+min);
         return lists.containsKey(min) ? lists.get(min).iterator().next() : lists.containsKey(preMin) ? lists.get(preMin).iterator().next() : getMaxKey();
     }
 }
+
+/**
+ * Your AllOne object will be instantiated and called as such:
+ * AllOne obj = new AllOne();
+ * obj.inc(key);
+ * obj.dec(key);
+ * String param_3 = obj.getMaxKey();
+ * String param_4 = obj.getMinKey();
+ */
