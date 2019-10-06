@@ -29,6 +29,7 @@ class UnionFind {
         } else { 
             id[j] = i; 
             sz[i] += sz[j]; 
-        } 
+        }
+        // otherwise just use id[i] = j;
     }
 }
