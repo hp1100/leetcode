@@ -32,6 +32,10 @@ class UnionFind {
         }
         // otherwise just use id[i] = j;
     }
+    
+    public int getNumGroups() {
+        return (int)range(0, id.length).filter(i -> i == id[i]).count(); // java 8
+    }
 }
 
 
