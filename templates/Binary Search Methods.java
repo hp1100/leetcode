@@ -106,7 +106,7 @@ private int binarySearch(int[] nums, int target){
 		else
 			hi = mid - 1;
 	}
-	return lo;
+	return hi;
 }
 
 
