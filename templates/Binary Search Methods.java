@@ -15,6 +15,24 @@ public int binarySearch(int[] nums, int target){
 	}
 	return lo;
 }
+
+
+// return first index if exist else return insert place
+// contain duplicate
+private int findFirstInsertPlace(int[] nums, int target) {
+	int lo = 0, hi = nums.length - 1;
+	while (lo <= hi) {
+	    int mid = (hi - lo) / 2 + lo;
+	    if (nums[mid] >= target) {
+		hi = mid - 1;
+	    } else {
+		lo = mid + 1;
+	    }
+	}
+	return lo;
+}
+
+
   
 // find first element （lower_bound)
 // Method 1: lo <= hi, hi = nums.length - 1
