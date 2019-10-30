@@ -20,3 +20,15 @@ int generateGCD(int a,int b){
 int lcm(int a, int b) {
     return a * (b / gcd(a, b));
 }
+
+
+// long type
+long gcd(long a, long b) {
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+
+long lcm(long a, long b) {
+    return a * b / gcd(a, b);
+}
