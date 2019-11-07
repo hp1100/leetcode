@@ -45,3 +45,19 @@ class Solution {
         return Arrays.stream(Arrays.copyOfRange(arr, lo, lo + k)).boxed().collect(Collectors.toList());
     }
 }
+
+// O(log(N-K) + K)
+class Solution {
+    public List<Integer> findClosestElements(int[] A, int k, int x) {
+        int left = 0, right = A.length - k - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (x - A[mid] > A[mid + k] - x)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return Arrays.stream(A, left, left + k).boxed().collect(Collectors.toList());
+    }
+}
+
