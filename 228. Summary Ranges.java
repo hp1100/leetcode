@@ -1,3 +1,4 @@
+//============================2017.12.14================================
 class Solution {
     public List<String> summaryRanges(int[] nums) {
         List<String> list = new ArrayList();
@@ -17,5 +18,31 @@ class Solution {
             }
         }
         return list;
+    }
+}
+
+
+
+//============================2019.11.6================================
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        
+        List<String> res = new LinkedList<>();
+        
+        int lo = 0, hi = 0;
+        
+        while (hi <= nums.length) {
+            if (hi == lo || (hi < nums.length && nums[hi] - nums[hi - 1] == 1)) {
+                hi++;
+                continue;
+            }
+            
+            if (hi - lo == 1) res.add(nums[lo] + "");
+            if (hi - lo > 1) res.add(nums[lo] + "->" + nums[hi - 1]);
+            lo = hi;
+        }
+        
+            
+        return res;
     }
 }
