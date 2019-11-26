@@ -45,3 +45,46 @@ class Solution {
         return s.substring(resIdx - minLen, resIdx + 1);
     }
 }
+
+
+//=============================2019/11/26===============================
+    
+    
+    class Solution {
+    
+    public String minWindow(String s, String t) {
+        int[] s_a = new int[128];
+        int[] t_a = new int[128];
+        
+        for (int i = 0; i < t.length(); i++) {
+            t_a[t.charAt(i)]++;
+        }
+        
+        int right = 0, left = 0;
+        boolean exist = false;
+        int[] idxs = new int[2];
+        idxs[1] = s.length();
+        
+        while (right < s.length()) {
+            s_a[s.charAt(right++)]++;
+
+            while (left < right && cover(s_a, t_a)) {
+                exist = true;
+                if (right - left < idxs[1] - idxs[0]) {
+                    idxs[0] = left;
+                    idxs[1] = right;
+                }
+                s_a[s.charAt(left++)]--;
+            }
+            
+        }
+        return exist ? s.substring(idxs[0], idxs[1]) : "";
+    }
+    
+    private boolean cover(int[] s, int[] t) {
+        for (int i = 0; i < 128; i++) 
+            if (s[i] < t[i])
+                return false;
+        return true;
+    }
+}
