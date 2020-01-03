@@ -15,6 +15,10 @@ int generateGCD(int a,int b){
   else return generateGCD(b,a%b);
 }
 
+public int gcd(int a, int b) {
+    return b > 0 ? gcd(b, a % b) : a;
+}
+
 
 // lowest common multiple
 int lcm(int a, int b) {
