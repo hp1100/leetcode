@@ -2,9 +2,7 @@ class Solution {
     public void costOfMst(int n, int[][] edges) { 
         // Given a weighted undirected connected graph with n vertices numbered from 0 to n-1,
         // an array edges where edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between nodes fromi and toi
-    
         Arrays.sort(edges, (e1, e2)->Integer.compare(e1[2], e2[2]));
-      
         return buildMST(n, edges);
     }
     
