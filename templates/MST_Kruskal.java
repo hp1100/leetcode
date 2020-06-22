@@ -7,6 +7,7 @@ class Solution {
     }
     
     private int buildMST(int n, int[][] edges){
+        // Time complexity(E + VlgV)
         UnionFind uf = new UnionFind(n);
         int cost = 0;
         
