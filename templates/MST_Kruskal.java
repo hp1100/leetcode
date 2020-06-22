@@ -2,12 +2,13 @@ class Solution {
     public void costOfMst(int n, int[][] edges) { 
         // Given a weighted undirected connected graph with n vertices numbered from 0 to n-1,
         // an array edges where edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between nodes fromi and toi
+        // Sort Time complexity: O(ElogE)
         Arrays.sort(edges, (e1, e2)->Integer.compare(e1[2], e2[2]));
         return buildMST(n, edges);
     }
     
     private int buildMST(int n, int[][] edges){
-        // Time complexity(ElgV)
+        // Unionfind Time complexity: O(ElogV)
         UnionFind uf = new UnionFind(n);
         int cost = 0;
         
