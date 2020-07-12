@@ -101,4 +101,3 @@
         
         return minimum_distance;
     } 
-}
