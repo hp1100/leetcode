@@ -92,7 +92,7 @@ public void update(SegmentTreeNode node, int index, int value) {
 public int query(SegmentTreeNode node, int i, int j) {
     if (node.start == i && node.end == j) return node.sum;
     
-    int mid = (node.left + node.right) / 2;
+    int mid = (node.start + node.end) / 2;
     
     if (j <= mid)
         return query(node.left, i, j);
