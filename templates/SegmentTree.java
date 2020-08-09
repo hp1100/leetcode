@@ -74,7 +74,7 @@ public SegmentTreeNode build(int start, int end, int[] nums) {
     return new SegmentTreeNode(start, end, left.sum + right.sum, left, right);
 }
 
-// update tree time: T(n) = T(n/2) + C => O(lgn) 
+// update tree time: T(n) = T(n/2) + C => O(logn) 
 public void update(SegmentTreeNode node, int index, int value) {
     if (node.start == index && node.end == index) {
         node.sum = value;
@@ -87,6 +87,17 @@ public void update(SegmentTreeNode node, int index, int value) {
         update(node.right, index, value);
     node.sum = node.left.sum + node.right.sum;
 }
+
+// query time: O(logn + k)
+public int query(SegmentTreeNode node, int i, int j) {
+    if (node.start == i && node.end == j) return node.sum;
     
+    int mid = (node.left + node.right) / 2;
     
+    if (j <= mid)
+        return query(node.left, i, j);
+    else if (i > mid)
+        return query(node.right, i, j);
+    else
+        return query(node.left, i, mid) + query(node.right, mid + 1, right);
 }
