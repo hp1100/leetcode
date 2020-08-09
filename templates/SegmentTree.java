@@ -99,5 +99,5 @@ public int query(SegmentTreeNode node, int i, int j) {
     else if (i > mid)
         return query(node.right, i, j);
     else
-        return query(node.left, i, mid) + query(node.right, mid + 1, right);
+        return query(node.left, i, mid) + query(node.right, mid + 1, j);
 }
