@@ -40,3 +40,53 @@
             return getUtil(ql, qr, l, mid, 2 * node + 1) + getUtil(ql, qr, mid + 1, r, 2 * node + 2);
         }
     }
+
+//===================================================================================================================
+
+class SegmentTreeNode {
+    int start;
+    int end;
+    int sum; // can be Max/Min
+    SegmentTreeNode left = null;
+    SegmentTreeNode right = null;
+    public SegmentTreeNode(int start, int end, int sum) {
+        this.start = start;
+        this.end = end;
+        this.sum = sum;
+    }
+    public SegmentTreeNode(int start, int end, int sum, SegmentTreeNode left, SegmentTreeNode right) {
+        this.start = start;
+        this.end = end;
+        this.sum = sum;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// build tree time: T(n) = 2 * T(n/2) + C => O(n)
+public SegmentTreeNode build(int start, int end, int[] nums) {
+    if (start == end)
+        return new SegmentTreeNode(start, end, nums[start]);
+
+    int mid = (start + end) / 2;
+    SegmentTreeNode left = build(start, mid, nums);
+    SegmentTreeNode right = build(mid + 1, end, nums);
+    return new SegmentTreeNode(start, end, left.sum + right.sum, left, right);
+}
+
+// update tree time: T(n) = T(n/2) + C => O(lgn) 
+public void update(SegmentTreeNode node, int index, int value) {
+    if (node.start == index && node.end == index) {
+        node.sum = value;
+        return;
+    }
+    int mid = (node.start + node.end) / 2;
+    if (index <= mid)
+        update(node.left, index, value);
+    else
+        update(node.right, index, value);
+    node.sum = node.left.sum + node.right.sum;
+}
+    
+    
+}
