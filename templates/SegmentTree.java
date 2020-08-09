@@ -41,7 +41,7 @@
         }
     }
 
-//===================================================================================================================
+// =============================================Segment Tree query range Sum=========================================================
 
 class SegmentTreeNode {
     int start;
@@ -100,4 +100,47 @@ public int query(SegmentTreeNode node, int i, int j) {
         return query(node.right, i, j);
     else
         return query(node.left, i, mid) + query(node.right, mid + 1, j);
+}
+
+// =============================================Segment Tree query range Max====================================https://leetcode.com/playground/NqrioxPF
+
+class Solution {
+    // build tree time: T(n) = 2 * T(n/2) + C => O(n)
+    public SegmentTreeNode build(int start, int end, int[] nums) {
+        if (start == end)
+            return new SegmentTreeNode(start, end, nums[start]);
+
+        int mid = (start + end) / 2;
+        SegmentTreeNode left = build(start, mid, nums);
+        SegmentTreeNode right = build(mid + 1, end, nums);
+        return new SegmentTreeNode(start, end, Math.max(left.max, right.max), left, right);
+    }
+
+    // update tree time: T(n) = T(n/2) + C => O(logn) 
+    public void update(SegmentTreeNode node, int index, int value) {
+        if (node.start == index && node.end == index) {
+            node.max = value;
+            return;
+        }
+        int mid = (node.start + node.end) / 2;
+        if (index <= mid)
+            update(node.left, index, value);
+        else
+            update(node.right, index, value);
+        node.max = Math.max(node.left.max, node.right.max);
+    }
+
+    // query time: O(logn + k)
+    public int query(SegmentTreeNode node, int i, int j) {
+        if (node.start == i && node.end == j) return node.max;
+
+        int mid = (node.start + node.end) / 2;
+
+        if (j <= mid)
+            return query(node.left, i, j);
+        else if (i > mid)
+            return query(node.right, i, j);
+        else
+            return Math.max(query(node.left, i, mid), query(node.right, mid + 1, j));
+    }
 }
