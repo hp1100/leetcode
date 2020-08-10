@@ -103,9 +103,22 @@ public int query(SegmentTreeNode node, int i, int j) {
         return query(node.left, i, mid) + query(node.right, mid + 1, j);
 }
 
+// query time: O(logn + k)
+public int query2(SegmentTreeNode node, int i, int j) {
+    if (i <= node.start && node.end <= j) return node.sum;
+    
+    int mid = (node.start + node.end) / 2;
+    int sum = 0;    
+    // 如果左儿子代表的区间 [i,m] 与询问区间有交集,则递归查询左儿子
+    if (i <= mid) sum += query(node.left, i, j);
+    // 如果右儿子代表的区间 [m+1,j] 与询问区间有交集,则递归查询右儿子
+    if (j > mid) sum += query(node.right, i, j);
+    return sum;
+}
 
+// 区间修改（区间加上某个值）：
 public void updateRange(SegmentTreeNode node, int i, int j, int c) {
-    // [l,r] 为修改区间,c 为被修改的元素的变化量
+    // [i,j] 为修改区间,c 为被修改的元素的变化量
     if (i <= node.start && node.end <= j) {
         node.sum += (node.end - node.start + 1) * c;
         node.lazy += c;
@@ -125,6 +138,26 @@ public void updateRange(SegmentTreeNode node, int i, int j, int c) {
     if (i <= mid) update(node.left, i, j, c);
     if (j > mid) update(node.right, i, j, c);
     node.sum = node.left.sum + node.right.sum;
+}
+
+// lazy version 
+public int query(SegmentTreeNode node, int i, int j) {
+    // [i, j] 为查询区间
+    if (i <= node.start && node.end <= j) {
+        return node.sum;    
+    }
+    int mid = (node.start + node.end) / 2;
+    if (node.lazu != 0) {
+        node.left.sum += node.lazy * (mid - node.start + 1);
+        node.right.sum += node.lazy * (node.end - mid + 1);
+        node.left.lazy = node.lazy;
+        node.right.lazy = node.lazy;
+        node.lazy = 0;
+    }
+    int sum = 0;
+    if (i <= mid) sum = query(node.left, i, j);
+    if (j > mid) sum += query(node.right, i, j);
+    return sum;
 }
 
 // =============================================Segment Tree query range Max====================================https://leetcode.com/playground/NqrioxPF
