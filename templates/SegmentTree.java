@@ -47,6 +47,7 @@ class SegmentTreeNode {
     int start;
     int end;
     int sum; // can be Max/Min
+    int lazy = 0;
     SegmentTreeNode left = null;
     SegmentTreeNode right = null;
     public SegmentTreeNode(int start, int end, int sum) {
@@ -90,7 +91,7 @@ public void update(SegmentTreeNode node, int index, int value) {
 
 // query time: O(logn + k)
 public int query(SegmentTreeNode node, int i, int j) {
-    if (node.start == i && node.end == j) return node.sum;
+    if (i <= node.start && node.end <= j) return node.sum;
     
     int mid = (node.start + node.end) / 2;
     
@@ -100,6 +101,30 @@ public int query(SegmentTreeNode node, int i, int j) {
         return query(node.right, i, j);
     else
         return query(node.left, i, mid) + query(node.right, mid + 1, j);
+}
+
+
+public void updateRange(SegmentTreeNode node, int i, int j, int c) {
+    // [l,r] 为修改区间,c 为被修改的元素的变化量
+    if (i <= node.start && node.end <= j) {
+        node.sum += (node.end - node.start + 1) * c;
+        node.lazy += c;
+        return;
+    }
+    int mid = (node.start + node.end) / 2;
+
+    if (node.lazy != 0) {
+        // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
+        node.left.sum += node.lazy * (mid - node.start + 1);
+        node.right.sum += node.lazy * (node.end - mid + 1);
+        node.left.lazy += node.lazy;
+        node.right.lazy += node.lazy;
+        node.lazy = 0;
+    }
+    
+    if (i <= mid) update(node.left, i, j, c);
+    if (j > mid) update(node.right, i, j, c);
+    node.sum = node.left.sum + node.right.sum;
 }
 
 // =============================================Segment Tree query range Max====================================https://leetcode.com/playground/NqrioxPF
@@ -132,7 +157,7 @@ class Solution {
 
     // query time: O(logn + k)
     public int query(SegmentTreeNode node, int i, int j) {
-        if (node.start == i && node.end == j) return node.max;
+        if (i <= node.start && node.end <= j) return node.max;
 
         int mid = (node.start + node.end) / 2;
 
