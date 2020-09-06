@@ -38,14 +38,11 @@ class UnionFind{
     }
     
     public int find(int i){
-        int parent = parents[i];
-        if(parent == i){
-            return i;
-        }else{
-            int root = find(parent);
-            parents[i] = root;
-            return root;
+        while (i != parents[i]) {
+            parents[i] = parents[parents[i]];
+            i = parents[i];
         }
+        return i;
     }
     
     public boolean union(int i, int j){
