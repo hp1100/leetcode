@@ -15,7 +15,7 @@ Map<String, Integer> map = list.stream()
 
 // Smaple: LinkedList 1 -> 0 -> 1 to 101(demical:5)
 public int getDecimalValue(ListNode head) {
-return Stream.iterate(head, i -> i != null, i -> i.next)
-             .map(i -> i.val)
-             .reduce(0, (a, b) ->  a * 2 + b);
+        return Stream.iterate(head, i -> i != null, i -> i.next)
+                     .map(i -> i.val)
+                     .reduce(0, (a, b) ->  a * 2 + b);
 }
