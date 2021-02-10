@@ -1,4 +1,4 @@
-    private boolean match(String s, String p) {
+    private boolean match(String s, String p) { // return true if string s contains string p
         int m = s.length(), n = p.length();
         char[] a = s.toCharArray();
         char[] b = p.toCharArray();
