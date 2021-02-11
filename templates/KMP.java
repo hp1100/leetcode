@@ -2,14 +2,14 @@
         int m = s.length(), n = p.length();
         char[] a = s.toCharArray();
         char[] b = p.toCharArray();
-        int[] dp = new int[m];
+        //int[] dp = new int[m];
         int[] next = getNext(p);
 
         int j = 0;
         for (int i = 0; i < m && j < n; i++) {
             while (j > 0 && a[i] != b[j]) j = next[j - 1];
             if (a[i] == b[j]) j++;
-            dp[i] = j;
+            //dp[i] = j;
         }
 
         return j == n;
